@@ -69,12 +69,12 @@ main {
     text-align: right;
 }
 
-.header__version {
+.app-name__version {
     padding: 2px 5px;
     background-color: #5800fc5d;
-    color: rgb(255, 255, 255);
-    font-size: 13px;
+    color: #FFF;
     font-weight: 400;
+    font-size: 13px;
 }
 
 .header__logo {

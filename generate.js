@@ -1,4 +1,4 @@
-const generator = () => {
+(() => {
     const codeBox = document.querySelector('#cssCode')
     const clickEventsLoad = () => {
         const btnCopyCode = document.querySelector('#copyCode')
@@ -28,5 +28,4 @@ const generator = () => {
     const reset = () => {
         codeBox.innerText = 'background-image: linear-gradient(to right, #5a90e0, #6000fc);';
     }
-}
-generator();
+})
