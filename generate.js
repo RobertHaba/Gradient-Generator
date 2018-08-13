@@ -1,10 +1,20 @@
-function generator() {
+const generator = () => {
+    const codeBox = document.querySelector('#cssCode')
+    const clickEventsLoad = () => {
+        const btnCopyCode = document.querySelector('#copyCode')
+        btnCopyCode.addEventListener('click', () => {
+            copyCode()
+        });
+        const btnReset = document.querySelector('#resetGenerator')
+        btnReset.addEventListener('click', () => {
+            reset()
+        });
+    }
+    clickEventsLoad();
 
 
+    const copyCode = () => {
 
-
-    this.copy = () => {
-        const codeBox = document.querySelector('#cssCode')
         codeBox.focus()
         codeBox.select()
         try {
@@ -15,5 +25,8 @@ function generator() {
             console.log('Oops, unable to copy');
         }
     }
+    const reset = () => {
+        codeBox.innerText = 'background-image: linear-gradient(to right, #5a90e0, #6000fc);';
+    }
 }
-const generatorRun = new generator()
+generator();
