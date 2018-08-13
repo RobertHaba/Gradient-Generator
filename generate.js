@@ -1,16 +1,6 @@
 (() => {
     const codeBox = document.querySelector('#cssCode')
-    const clickEventsLoad = () => {
-        const btnCopyCode = document.querySelector('#copyCode')
-        btnCopyCode.addEventListener('click', () => {
-            copyCode()
-        });
-        const btnReset = document.querySelector('#resetGenerator')
-        btnReset.addEventListener('click', () => {
-            reset()
-        });
-    }
-    clickEventsLoad();
+
 
 
     const copyCode = () => {
@@ -28,4 +18,11 @@
     const reset = () => {
         codeBox.innerText = 'background-image: linear-gradient(to right, #5a90e0, #6000fc);';
     }
-})
+    const clickEventsLoad = () => {
+        const btnCopyCode = document.querySelector('#copyCode')
+        btnCopyCode.addEventListener('click', copyCode);
+        const btnReset = document.querySelector('#resetGenerator')
+        btnReset.addEventListener('click', reset);
+    }
+    clickEventsLoad();
+})();
