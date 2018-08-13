@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" rel="stylesheet" href="./normalize.css">
+    <link type="text/css" rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <header class="header">
+            <div class="column">
+                <a href="https://roberthaba.github.io" class="header__logo">Haba </a><span class="icon icon__rocket icon--left"></span>
+            </div>
+            <div class="column column--el-to-right">
+                <h1 class="header__title">Grandient Generator <span class="header__version">ALPHA v.0.1.0</span></h1>
+            </div>
+        </header>
+        <section class="section">
+            <div class="container">
+                <div class="box">
+                    <div class="box__column box__column--end">
+                        <p class="box__text">Podaj kolory</p>
+                    </div>
+                    <div class="box__column box__column--center">
+                        <input class="box__input" type="text">
+                        <input class="box__input" type="text">
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box__column box__column--end">
+                        <p class="box__text">Wybierz orientację</p>
+                    </div>
+                    <div class="box__column box__column--center">
+                        <span class="btn-icon icon icon__arrow icon--rotate-135"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-180"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-225"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-270"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-315"></span>
+                        <span class="btn-icon icon icon__arrow"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-45"></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-90"></span>
+                        <span class="btn-icon icon icon__spinner"></span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box__column box__column--end">
+                        <p class="box__text">Ostatni krok</p>
+                    </div>
+                    <div class="box__column box__column--center">
+                        <button class="btn">utwórz</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box__column box__column--end">
+                        <p class="box__text">Kod CSS</p>
+
+                    </div>
+                    <div class="box__column box__column--center">
+                        <span class="btn-icon icon icon--big icon__reset"></span>
+                        <textarea class="box__text box__test--code" id="cssCode" readonly> background-image: linear-gradient(to top, #571d1d, #6a2d2c, #7e3d3c, #924d4d, #a65e5e);</textarea>
+                        <span class="btn-icon icon icon--big icon__copy" onclick="generatorRun.copy()"></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script src="generate.js">
+    </script>
+</body>
+
+</html>
