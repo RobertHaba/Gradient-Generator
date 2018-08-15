@@ -23,7 +23,7 @@ body * {
     box-sizing: border-box;
 }
 
-main {
+.main {
     position: relative;
     height: auto;
     width: auto;
@@ -72,7 +72,7 @@ main {
 
 .app-name__version {
     padding: 2px 5px;
-    background-color: #5800fc5d;
+    background-color: rgba(255, 255, 255, 0.123);
     color: #FFF;
     font-weight: 400;
     font-size: 13px;
@@ -167,7 +167,8 @@ main {
     border-radius: 20px;
     border: 0;
     margin: 0 15px;
-    box-shadow: 0 2px 4px 1px rgba(35, 0, 95, 0.308);
+    padding: 0 15px;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.123);
 }
 
 .btn-icon {
@@ -248,9 +249,10 @@ main {
     margin: 0 15px;
     letter-spacing: 1.4px;
     text-align: center;
+    text-transform: uppercase;
     font-size: 13px;
     font-family: 'Montserrat';
     color: #FFF;
-    background-color: rgba(35, 0, 95, 0.212);
-    box-shadow: 0 2px 4px 1px rgba(35, 0, 95, 0.308);
+    background-color: rgba(35, 0, 95, 0.068);
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.123);
 }

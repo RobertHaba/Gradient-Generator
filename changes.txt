@@ -1,0 +1,42 @@
+Version System
+v.[x] <- Zmiany w aplikacji, bez wstecznej kompatybilności
+v.[x].[y] <- Nowy patch
+v.[x].[y].[a][b][c]
+[a] <- Dodane funkcje
+[b] <- Edytowane funkcje
+[c] <- HTML/CSS/Interfejs
+
+
+0.2.222
+Naprawione Bugi:{
+- Hex'a #1234567 => #123456
+- rgb/a(444,444,444/1) => Nie działa
+- rgba/hsla(0,0,0,0)/Niedziała => Działa
+}
+
+Interfejs:{
+- create_btn => uppercase
+- Nowe cienie/ Nowy kanał alfa dla btn i app version
+}
+
+Funkcje:{
+
+* Aktualizacje *
+- validateInput:{
+    - Walidacja dla hex'a
+}
+- clickEventsLoad{
+    przy utracie focus'u na inpucie input zmienia kolor
+}
+* Nowości *
+- new regexp
+- changeFontColor{
+    - Automatycznie dopasowywuje najlepszy kolor dla tła 
+}
+- inputFocusOut{
+    - Po zjechaniu zmienia kolor tła
+    - póki co bez regexp'a
+}
+
+}
+
