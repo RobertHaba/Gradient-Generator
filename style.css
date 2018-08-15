@@ -266,6 +266,7 @@ body * {
     text-transform: uppercase;
     font-size: 13px;
     font-family: 'Montserrat';
+    cursor: pointer;
     color: #FFF;
     background-color: rgba(35, 0, 95, 0.068);
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.123);
