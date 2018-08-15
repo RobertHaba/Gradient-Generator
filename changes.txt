@@ -1,12 +1,52 @@
 Version System
 v.[x] <- Zmiany w aplikacji, bez wstecznej kompatybilności
-v.[x].[y] <- Nowy patch
+v.[x].[y] <- Nowy patch (Nie uwzględniający poprawek itp)
 v.[x].[y].[a][b][c]
 [a] <- Dodane funkcje
-[b] <- Edytowane funkcje
-[c] <- HTML/CSS/Interfejs
+[b] <- HTML/CSS/Interfejs
+[c] <- Naprawione bugi
+Naprawione Bugi:{
+
+}
+
+Interfejs:{
+
+}
+
+Funkcje:{
+* Aktualizacje *
+
+* Nowości *
+
+}
+=======================
+0.3.230
+Naprawione Bugi:{
+- 
+}
+
+Interfejs:{
+- Nowa klasa active
+}
+
+Funkcje:{
+* Aktualizacje *
+
+- Nowe globalne zmienne orientation, exceptionCode
+- zmiany w generowanym kodzie CSS
+
+* Nowości *
+- addEventsToOrientationBtn{
+    - Pozwala na wybranie orientacji dla grantientu
+    - Nadaje klase active po kliknięciu na przycisk
+}
+- jscolor.js{
+    Pickowanie koloru przez input.
+}
+}
 
 
+ ___
 0.2.222
 Naprawione Bugi:{
 - Hex'a #1234567 => #123456
@@ -39,4 +79,6 @@ Funkcje:{
 }
 
 }
+
+
 

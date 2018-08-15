@@ -1,12 +1,15 @@
 (() => {
     const codeBox = document.querySelector('#cssCode')
+    const orientationSection = document.querySelector('#orientationSection');
     let mainAppBox = document.querySelector('#mainApp')
-    let inputFrom, inputTo, gradientFrom, gradientTo, codeGradient
+    let inputFrom, inputTo, gradientFrom, gradientTo, codeGradient, orientation, exceptionCode
     inputFrom = document.querySelector('#inputFrom')
     inputTo = document.querySelector('#inputTo')
     gradientFrom = '#5a90e0'
     gradientTo = '#6000fc'
     codegradient = "linear-gradient(to right, " + gradientFrom + ', ' + gradientTo + ")"
+    orientation = 'to bottom'
+    exceptionCode = 'linear-gradient'
 
     let reg = /(#([\da-f]{3}){1,2}|(rgb|hsl)a\((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(1|0|0?\.\d+)\)|(rgb|hsl)\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])%?(,\s?\d{1,3}%?){2}\))/
     const getValue = () => {
@@ -56,7 +59,7 @@
     const createCodeGradient = () => {
         console.log('4 step')
 
-        codeGradient = "linear-gradient(to top, " + gradientFrom + ', ' + gradientTo + ")"
+        codeGradient = exceptionCode + "(" + orientation + ", " + gradientFrom + ', ' + gradientTo + ")"
         codeBox.innerText = 'background-image: ' + codeGradient;
     }
 
@@ -91,12 +94,18 @@
         }
     }
     const reset = () => {
-        gradientFrom = '#5a90e0'
-        gradientTo = '#6000fc'
-        codeGradient = "linear-gradient(to right, " + gradientFrom + ', ' + gradientTo + ")"
+        gradientFrom = '#938dff'
+        gradientTo = '#ff8ff8'
+        codeGradient = "linear-gradient(to bottom, " + gradientFrom + ', ' + gradientTo + ")"
         inputFrom.value = gradientFrom;
         inputTo.value = gradientTo;
         codeBox.innerText = 'background-image: ' + codeGradient
+        let activeBtn = orientationSection.querySelector('.active')
+        if (activeBtn !== null) {
+            activeBtn.classList.remove('active');
+        }
+        let defaultOrientationBtn = document.querySelector('#defaultOrientation');
+        defaultOrientationBtn.classList.add('active')
         interfaceChanges()
     }
     const clickEventsLoad = () => {
@@ -111,6 +120,21 @@
         const focusOutBtnTo = document.querySelector('#inputTo')
         focusOutBtnTo.addEventListener('focusout', inputFocusOut)
 
+        addEventsToOrientationBtn(orientationSection)
+    }
+    const addEventsToOrientationBtn = orientationSection => {
+        const childElements = orientationSection.children
+        for (let childBtn of childElements) {
+            childBtn.addEventListener('click', () => {
+                orientation = childBtn.dataset.orientation
+                exceptionCode = (childBtn.dataset.exception === undefined) ? 'linear-gradient' : childBtn.dataset.exception
+                let activeBtn = orientationSection.querySelector('.active')
+                if (activeBtn !== null) {
+                    activeBtn.classList.remove('active');
+                }
+                childBtn.classList.add('active')
+            })
+        }
     }
     clickEventsLoad();
 })();

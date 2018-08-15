@@ -1,0 +1,6 @@
+Ideas gradient:
+New
+background-image: linear-gradient(to bottom, #7f83ff, #ff77c9)
+
+Old
+background-image: linear-gradient(to right, #5a90e0, #6000fc)
