@@ -19,10 +19,10 @@
                 <a href="https://roberthaba.github.io" class="header__logo">Haba </a><span class="icon icon__rocket icon--left"></span>
             </div>
             <div class="column column--el-to-right">
-                <h1 class="header__title app-name">Gradient Generator <span class="app-name__version">BETA v.0.4.360</span></h1>
+                <h1 class="header__title app-name">Gradient Generator <span class="app-name__version">BETA v.0.5.332</span></h1>
             </div>
         </header>
-        <section class="section">
+        <section class="section" id="gradientApp">
             <div class="container">
                 <div class="box">
                     <div class="box__column box__column--end">
@@ -38,23 +38,24 @@
                         <p class="box__text">Wybierz orientację</p>
                     </div>
                     <div class="box__column box__column--center" id="orientationSection">
-                        <span class="btn-icon icon icon__arrow icon--rotate-135" data-orientation='45deg'></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-180" data-orientation='to right' id="defaultOrientation"></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-225" data-orientation='135deg'></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-270 active" data-orientation='to bottom'></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-315" data-orientation='225deg'></span>
-                        <span class="btn-icon icon icon__arrow" data-orientation='to left'></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-45" data-orientation='315deg'></span>
-                        <span class="btn-icon icon icon__arrow icon--rotate-90" data-orientation='to top'></span>
-                        <span class="btn-icon icon icon__spinner" data-exception="radial-gradient" data-orientation='circle'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-135" data-orientation='45deg' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-180" data-orientation='to right' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-225" data-orientation='135deg' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-270 active" id="defaultOrientation" data-orientation='to bottom' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-315" data-orientation='225deg' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow" data-orientation='to left' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-45" data-orientation='315deg' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__arrow icon--rotate-90" data-orientation='to top' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__circle--inside" data-exception="radial-gradient" data-orientation='circle' data-reverse='false'></span>
+                        <span class="btn-icon icon icon__circle--outside" data-exception="radial-gradient" data-orientation='circle' data-reverse='true'></span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="box__column box__column--end">
-                        <p class="box__text">Ostatni krok</p>
+                        <p class="box__text">Dodaj więcej kolorów(już w krótce)</p>
                     </div>
                     <div class="box__column box__column--center">
-                        <button class="btn" id="btnGenerate">utwórz</button>
+                        <button class="btn" id="btnGenerate">Dodaj</button>
                     </div>
                 </div>
                 <div class="box">
@@ -64,12 +65,23 @@
                     </div>
                     <div class="box__column box__column--center box__column--mobile">
                         <span class="btn-icon icon icon--big icon__reset" id="resetGenerator"></span>
-                        <textarea class="box__text box__text--code" id="cssCode" readonly> background-image: linear-gradient(to bottom, #938dff, #ff8ff8);</textarea>
+                        <textarea class="box__text box__text--code" id="cssCode" readonly>background-image: linear-gradient(to bottom, #938dff, #ff8ff8);</textarea>
                         <span class="btn-icon icon icon--big icon__copy" id="copyCode"></span>
                     </div>
                 </div>
 
             </div>
+            <div class="modal modal--small hidden" id="modalCopy">
+
+                <span class="icon icon--big icon__rocket"></span>
+                <div class="box modal__box">
+                    <p class="box__text" id="modalText">
+                        Skopiowano do schowka
+                    </p>
+                </div>
+
+            </div>
+
         </section>
     </main>
 

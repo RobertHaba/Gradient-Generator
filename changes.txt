@@ -19,7 +19,32 @@ Funkcje:{
 * Nowości *
 
 }
+
 =======================
+0.5.332
+Naprawione Bugi:{
+- Bug z 'to right' na starcie 
+- Bug z btn po resecie 
+
+}
+
+Interfejs:{
+    Wyrzucona sekcja "utwórz"
+    Dodane nowe ikonki circle
+    Modal
+}
+
+Funkcje:{
+* Aktualizacje *
+    
+* Nowości *
+    Live generator
+    Reverse Circle gradient
+    Modal
+}
+
+
+_______________________
 0.3.230
 Naprawione Bugi:{
 - 
