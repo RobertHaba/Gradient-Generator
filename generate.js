@@ -2,7 +2,12 @@
     const codeBox = document.querySelector('#cssCode')
     const orientationSection = document.querySelector('#orientationSection');
     let mainAppBox = document.querySelector('#mainApp')
-    let inputFrom, inputTo, gradientFrom, gradientTo, codeGradient, orientation, exceptionCode, itsEndAnimation, reverseColors
+    let inputFrom, inputTo, gradientFrom, gradientTo, codeGradient, orientation, exceptionCode, itsEndAnimation, reverseColors, inputsBox
+    let countGenerateInput, gradientMid, inputMid, btnNewInputMid
+    btnNewInputMid = document.querySelector('#addInputMid');
+    inputMid = 'undefined'
+    countGenerateInput = 0;
+    inputsBox = document.querySelector('#inputBox');
     itsEndAnimation = true;
     inputFrom = document.querySelector('#inputFrom')
     inputTo = document.querySelector('#inputTo')
@@ -12,48 +17,39 @@
     orientation = 'to bottom'
     exceptionCode = 'linear-gradient'
     reverseColors = false
-        /*
-         let reg = /(#([\da-f]{3}){1,2}|(rgb|hsl)a\((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(1|0|0?\.\d+)\)|(rgb|hsl)\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])%?(,\s?\d{1,3}%?){2}\))/
-         const getValue = () => {
-             console.log('1 step')
-             gradientFrom = inputFrom.value.toLowerCase()
-             gradientTo = inputTo.value.toLowerCase()
-             validateInput()
-         }
-         const validateInput = () => {
-             console.log('2 step')
-             gradientFrom = (reg.test(gradientFrom)) ? gradientFrom : false
-             gradientTo = (reg.test(gradientTo)) ? gradientTo : false
-             console.log(gradientTo)
-             try {
-                 console.log('3 step')
-                 if (gradientFrom.charAt(0) === '#' && gradientFrom.length <= 7) {} else if (gradientFrom.charAt(0) === '#') {
-                     gradientFrom = gradientFrom.split(0, 6)
-                     inputFrom.value = gradientFrom
-                 }
-                 if (gradientTo.charAt(0) === '#' && gradientTo.length <= 7) {} else if (gradientTo.charAt(0) === '#') {
-                     gradientTo = gradientTo.slice(0, 7)
-                     inputTo.value = gradientTo
-                 }
-             } catch (err) {
-                 console.log('Value is empty')
-             }
-             if (gradientFrom != false & gradientTo != false) {
-                 createCodeGradient()
-             }
-         }
-         */
+    let reg = /(#([0-9A-Fa-f]{6})|(rgb|hsl)a\((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(1|0|0?\.\d+)\)|(rgb|hsl)\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\))/
+    const getValue = () => {
+        gradientFrom = inputFrom.value.toLowerCase()
+        gradientTo = inputTo.value.toLowerCase()
+        if (inputMid !== 'undefined') {
+            gradientMid = inputMid.value.toLowerCase()
+        }
+        validateInput()
+    }
+    const validateInput = () => {
+        gradientFrom = gradientFrom.match(reg)
+        gradientFrom = (gradientFrom !== null) ? gradientFrom[0] : '#ffffff'
+        gradientTo = gradientTo.match(reg)
+        gradientTo = (gradientTo !== null) ? gradientTo[0] : '#ffffff'
+        if (inputMid !== 'undefined') {
+            gradientMid = gradientMid.match(reg)
+            gradientMid = (gradientMid !== null) ? gradientMid[0] : '#ffffff'
+            inputMid.value = gradientMid
+        }
+        inputFrom.value = gradientFrom
+        inputTo.value = gradientTo
+        createCodeGradient()
+    }
     const createCodeGradient = () => {
         if (reverseColors === true) {
             reverseColorsFun()
         }
-        codeGradient = exceptionCode + "(" + orientation + ", " + gradientFrom + ', ' + gradientTo + ")"
+        codeGradient = (inputMid === 'undefined') ? exceptionCode + "(" + orientation + ", " + gradientFrom + ', ' + gradientTo + ")" : exceptionCode + "(" + orientation + ", " + gradientFrom + ', ' + gradientMid + ', ' + gradientTo + ")"
         if (reverseColors === true) {
             reverseColorsFun()
         }
         interfaceChanges()
         showCodeGradient()
-
     }
     const reverseColorsFun = () => {
         let help
@@ -65,15 +61,17 @@
         codeBox.innerText = 'background-image: ' + codeGradient;
     }
     const interfaceChanges = () => {
-        console.log('5 step')
         mainAppBox.style.background = codeGradient
         inputFrom.style.backgroundColor = gradientFrom;
         changeFontColor(inputFrom)
+        if (inputMid !== 'undefined') {
+            inputMid.style.backgroundColor = gradientMid;
+            changeFontColor(inputMid)
+        }
         inputTo.style.backgroundColor = gradientTo;
         changeFontColor(inputTo)
     }
     const changeFontColor = (input) => {
-        console.log('6 step')
         let bgColor, colorNumber, colorNumberArray, sumColor = 0
         bgColor = input.style.backgroundColor;
         colorNumber = bgColor.replace(/\D+|\D.*/g, '|')
@@ -81,16 +79,63 @@
         sumColor = parseInt(colorNumberArray[1]) + parseInt(colorNumberArray[2]) + parseInt(colorNumberArray[3])
         input.style.color = (sumColor <= 390) ? '#FFFFFF' : '#000000';
     }
+    const addNewMidInput = () => {
+        if (inputMid === 'undefined') {
+            inputMid = inputFrom.cloneNode()
+            countGenerateInput++
+            inputMid.id = 'inputMid';
+            inputsBox.insertBefore(inputMid, inputTo)
+            inputMid.classList.remove('jscolor')
+            inputMid.classList.add('jscolor')
+            gradientMid = inputMid.value
+            jsColorPicker('input.jscolor', {
+                customBG: '#222',
+                readOnly: false,
+                // patch: false,
+                init: function(elm, colors)  { // colors is a different instance (not connected to colorPicker)
+                    elm.style.backgroundColor = elm.value;
+                    elm.style.color = colors.rgbaMixCustom.luminance > 0.22 ? '#222' : '#ddd';
+                },
+                // appendTo: document.querySelector('.samples')
+            });
+            getValue()
+            loadFocusOutBtn()
+            changeContentAddSection()
+        }
+    }
+    const changeContentAddSection = (changeTest) => {
+        let textBox = document.querySelector('#addBtnSectionText');
+        if (changeTest !== false) {
+            textBox.innerText = 'Usuń poprzedni kolor'
+            btnNewInputMid.innerText = 'USUŃ'
+            btnNewInputMid.addEventListener('click', removeInputMid)
+        } else if (changeTest === false) {
+            textBox.innerText = 'DODAJ KOLEJNY KOLOR'
+            btnNewInputMid.innerText = 'DODAJ'
+            btnNewInputMid.addEventListener('click', addNewMidInput)
+        }
+    }
+    const removeInputMid = (btnInputMid) => {
+        if (inputMid !== 'undefined') {
+            inputMid.remove()
+        }
+        btnNewInputMid.removeEventListener('click', removeInputMid)
+        btnNewInputMid.removeEventListener('click', addNewMidInput)
+        inputMid = 'undefined'
+        gradientMid = undefined;
+        changeContentAddSection(false)
+        getValue()
+    }
     const inputFocusOut = (thisInput) => {
         thisInput.target.style.backgroundColor = thisInput.target.value;
         if (thisInput.target.id === 'inputFrom') {
             gradientFrom = thisInput.target.value
         } else if (thisInput.target.id === 'inputTo') {
             gradientTo = thisInput.target.value
+        } else if (thisInput.target.id === 'inputMid') {
+            gradientMid = thisInput.target.value
         }
-        createCodeGradient()
-        interfaceChanges()
-        changeFontColor(thisInput.target)
+        getValue()
     }
     const copyCode = () => {
         codeBox.focus()
@@ -101,8 +146,6 @@
         } catch (err) {
             console.log('Oops, unable to copy');
             return copyTest = false;
-        } finally {
-            console.log('perfectio')
         }
         let modalCopyBox = document.querySelector('#modalCopy')
         if (copyTest && itsEndAnimation === true) {
@@ -122,7 +165,6 @@
             element.style.animation = '1s ' + animationName + ' forwards'
             setTimeout(() => {
                 element.style.display = 'none'
-                console.log('asd')
                 itsEndAnimation = true;
             }, 1000)
         }, timeToRemove - 1000)
@@ -143,18 +185,18 @@
         }
         let defaultOrientationBtn = document.querySelector('#defaultOrientation');
         defaultOrientationBtn.classList.add('active')
+        removeInputMid(btnNewInputMid)
+        btnNewInputMid.addEventListener('click', addNewMidInput)
         interfaceChanges()
     }
     const clickEventsLoad = () => {
         const btnCopyCode = document.querySelector('#copyCode')
-        btnCopyCode.addEventListener('click', copyCode);
         const btnReset = document.querySelector('#resetGenerator')
+        btnCopyCode.addEventListener('click', copyCode);
         btnReset.addEventListener('click', reset);
-        const focusOutBtnFrom = document.querySelector('#inputFrom')
-        focusOutBtnFrom.addEventListener('focusout', inputFocusOut)
-        const focusOutBtnTo = document.querySelector('#inputTo')
-        focusOutBtnTo.addEventListener('focusout', inputFocusOut)
+        btnNewInputMid.addEventListener('click', addNewMidInput)
         addEventsToOrientationBtn(orientationSection)
+        loadFocusOutBtn()
     }
     const addEventsToOrientationBtn = orientationSection => {
         const childElements = orientationSection.children
@@ -172,5 +214,12 @@
             })
         }
     }
+    const loadFocusOutBtn = () => {
+        let elementsBtn = document.querySelectorAll('input.jscolor');
+        for (let input of elementsBtn) {
+            input.addEventListener('focusout', inputFocusOut)
+        }
+    }
+
     clickEventsLoad();
 })();

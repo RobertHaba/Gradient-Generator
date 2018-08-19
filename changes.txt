@@ -19,8 +19,26 @@ Funkcje:{
 * Nowości *
 
 }
-
 =======================
+0.6.410
+Naprawione Bugi:{
+
+}
+
+Interfejs:{
+
+}
+
+Funkcje:{
+* Aktualizacje *
+
+* Nowości *
+    Full live generator
+    Przycisk do generowania dodatkowego koloru
+    Nowy color pikcer
+
+}
+_______________________
 0.5.332
 Naprawione Bugi:{
 - Bug z 'to right' na starcie 

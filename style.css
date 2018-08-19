@@ -19,6 +19,11 @@ button {
     font-family: inherit;
 }
 
+html,
+body {
+    overflow: hidden;
+}
+
 body * {
     box-sizing: border-box;
 }
@@ -363,6 +368,16 @@ JS class
     }
 }
 
+@media screen and (max-width: 510px) {
+    .box__column--inputs-area {
+        flex-wrap: wrap;
+        height: 90px;
+    }
+    box__input {
+        margin: 5px;
+    }
+}
+
 @media screen and (max-width: 490px) {
     .main {
         grid-template-rows: 10vh 90vh;
@@ -381,4 +396,8 @@ JS class
     .app-name__version {
         font-size: 11px;
     }
+}
+
+.cp-app {
+    background-color: rgba(255, 255, 255, 0.178);
 }

@@ -19,7 +19,7 @@
                 <a href="https://roberthaba.github.io" class="header__logo">Haba </a><span class="icon icon__rocket icon--left"></span>
             </div>
             <div class="column column--el-to-right">
-                <h1 class="header__title app-name">Gradient Generator <span class="app-name__version">BETA v.0.5.332</span></h1>
+                <h1 class="header__title app-name">Gradient Generator <span class="app-name__version">BETA v.0.6.410</span></h1>
             </div>
         </header>
         <section class="section" id="gradientApp">
@@ -28,9 +28,9 @@
                     <div class="box__column box__column--end">
                         <p class="box__text">Podaj kolory</p>
                     </div>
-                    <div class="box__column box__column--center">
-                        <input class="box__input jscolor {hash:true, backgroundColor:'rgba(44,44,44,0.3)', borderWidth:'0', borderRadius:'0'}" type="text" id="inputFrom" style="color:rgb(0,0,0)" value="938dff">
-                        <input class="box__input jscolor {hash:true, backgroundColor:'rgba(44,44,44,0.3)', borderWidth:'0', borderRadius:'0'}" type="text" id="inputTo" style="color:rgb(0,0,0)" value="ff8ff8">
+                    <div class="box__column box__column--center box__column--inputs-area" id="inputBox">
+                        <input class="box__input jscolor" type="text" id="inputFrom" style="color:rgb(0,0,0)" value="#938dff">
+                        <input class="box__input jscolor" type="text" id="inputTo" style="color:rgb(0,0,0)" value="#ff8ff8">
                     </div>
                 </div>
                 <div class="box">
@@ -50,12 +50,12 @@
                         <span class="btn-icon icon icon__circle--outside" data-exception="radial-gradient" data-orientation='circle' data-reverse='true'></span>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box" id="addInputSection">
                     <div class="box__column box__column--end">
-                        <p class="box__text">Dodaj więcej kolorów(już w krótce)</p>
+                        <p class="box__text" id="addBtnSectionText">Dodaj kolejny kolor</p>
                     </div>
                     <div class="box__column box__column--center">
-                        <button class="btn" id="btnGenerate">Dodaj</button>
+                        <button class="btn" id="addInputMid">Dodaj</button>
                     </div>
                 </div>
                 <div class="box">
@@ -87,7 +87,29 @@
 
     <script src="generate.js">
     </script>
-    <script src="./color_picker/jscolor.js"></script>
+    <!-- <button onclick="$colors.colorPicker('destroy')">destroy</button> -->
+    <script type="text/javascript" src="./colorPicker/colors.js"></script>
+    <script type="text/javascript" src="./colorPicker/colorPicker.data.js"></script>
+    <script type="text/javascript" src="./colorPicker/colorPicker.js"></script>
+
+    <!-- <script type="text/javascript" src="../color.all.min.js"></script> -->
+
+    <script type="text/javascript" src="./colorPicker/javascript_implementation/jsColor.js"></script>
+
+    <!-- <script type="text/javascript" src="jsColorPicker.min.js"></script> -->
+
+    <script type="text/javascript">
+        var colors = jsColorPicker('input.jscolor', {
+            customBG: '#222',
+            readOnly: false,
+            // patch: false,
+            init: function(elm, colors)  { // colors is a different instance (not connected to colorPicker)
+                elm.style.backgroundColor = elm.value;
+                elm.style.color = colors.rgbaMixCustom.luminance > 0.22 ? '#222' : '#ddd';
+            },
+            // appendTo: document.querySelector('.samples')
+        });
+    </script>
 </body>
 
 </html>
