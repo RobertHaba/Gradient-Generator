@@ -9,7 +9,7 @@ p {
 textarea,
 input,
 button {
-    resize: none;
+    resize: none !important;
     border: none;
     overflow: hidden;
     outline: none;
@@ -100,7 +100,7 @@ body * {
     justify-content: center;
 }
 
-.container {
+.container-app {
     display: grid;
     width: 600px;
     height: 600px;
@@ -358,7 +358,7 @@ JS class
 }
 
 @media screen and (max-width: 630px) {
-    .container {
+    .container-app {
         max-width: 600px;
         width: 100%;
     }

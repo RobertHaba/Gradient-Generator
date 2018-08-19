@@ -17,7 +17,7 @@
     orientation = 'to bottom'
     exceptionCode = 'linear-gradient'
     reverseColors = false
-    let reg = /(#([0-9A-Fa-f]{6})|(rgb|hsl)a\((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(1|0|0?\.\d+)\)|(rgb|hsl)\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\))/
+    let reg = /(#([0-9A-Fa-f]{6})|hsl[(]\s*0*(?:[12]?\d{1,2}|3(?:[0-5]\d|60))\s*(?:\s*,\s*0*(?:\d\d?(?:\.\d+)?\s*%|\.\d+\s*%|100(?:\.0*)?\s*%)){2}\s*[)]|rgba\((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(1|0|0?\.\d+)\)|rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\))/
     const getValue = () => {
         gradientFrom = inputFrom.value.toLowerCase()
         gradientTo = inputTo.value.toLowerCase()
@@ -29,7 +29,9 @@
     const validateInput = () => {
         gradientFrom = gradientFrom.match(reg)
         gradientFrom = (gradientFrom !== null) ? gradientFrom[0] : '#ffffff'
+
         gradientTo = gradientTo.match(reg)
+        console.log(gradientTo)
         gradientTo = (gradientTo !== null) ? gradientTo[0] : '#ffffff'
         if (inputMid !== 'undefined') {
             gradientMid = gradientMid.match(reg)
@@ -85,19 +87,9 @@
             countGenerateInput++
             inputMid.id = 'inputMid';
             inputsBox.insertBefore(inputMid, inputTo)
-            inputMid.classList.remove('jscolor')
-            inputMid.classList.add('jscolor')
+
             gradientMid = inputMid.value
-            jsColorPicker('input.jscolor', {
-                customBG: '#222',
-                readOnly: false,
-                // patch: false,
-                init: function(elm, colors)  { // colors is a different instance (not connected to colorPicker)
-                    elm.style.backgroundColor = elm.value;
-                    elm.style.color = colors.rgbaMixCustom.luminance > 0.22 ? '#222' : '#ddd';
-                },
-                // appendTo: document.querySelector('.samples')
-            });
+            $('#inputMid').colorpicker();
             getValue()
             loadFocusOutBtn()
             changeContentAddSection()
@@ -217,7 +209,8 @@
     const loadFocusOutBtn = () => {
         let elementsBtn = document.querySelectorAll('input.jscolor');
         for (let input of elementsBtn) {
-            input.addEventListener('focusout', inputFocusOut)
+            input.onchange = inputFocusOut
+
         }
     }
 
