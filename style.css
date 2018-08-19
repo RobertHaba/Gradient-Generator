@@ -2,8 +2,8 @@ h1,
 h2,
 h3,
 p {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 textarea,
@@ -286,7 +286,7 @@ body * {
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.123);
 }
 
-.modal {
+.modal-app {
     position: fixed;
     bottom: 0px;
     left: 50%;
@@ -295,7 +295,7 @@ body * {
     color: #FFF;
 }
 
-.modal--small {
+.modal-app--small {
     display: flex;
     box-sizing: border-box;
     width: 250px;
@@ -309,7 +309,7 @@ body * {
     display: flex;
 }
 
-.modal--to-top {
+.modal-app--to-top {
     animation: 1s ease-in forwards;
     animation-play-state: running;
 }
